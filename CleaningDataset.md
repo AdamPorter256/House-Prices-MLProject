@@ -109,17 +109,18 @@ print(df['sqft_basement'][12:18])
 17      0
 Name: sqft_basement, dtype: int64
 ```
-For all of the values shown before with a decimal value, we see there is no basement on the property. So we should check if this means there is an attic on the property. To do this, note that a value of 1.5 means that if there is no attic or second floor then the value of 'sqft_above' (Living area above ground level in square feet) should be zero. But if we check this:
+For all of the values shown before with a decimal value, we see there is no basement on the property. Now we should check if this means there is an attic on the property. To do this, note that a value of 1.5 means that if there is no attic or second floor then the value of 'sqft_above' (Living area above ground level in square feet) should be zero:
 ```python
 print(df['sqft_above'][12:18])
 ```
 ### Output
 ```
-12      0
-13      0
-14      0
-15    970
-16      0
-17      0
-Name: sqft_basement, dtype: int64
+12    1430
+13    1370
+14    1810
+15    1980
+16    1890
+17    1600
+Name: sqft_above, dtype: int64
 ```
+However, the values are not zero and are in fact the same as the values for 'sqft_living'. This does raise another problem though, data value 13 has only 1 recorded floor but also has a value of sqft_above that isnt zero.
