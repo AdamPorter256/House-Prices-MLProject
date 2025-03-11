@@ -95,32 +95,9 @@ print(df['floors'][12:18])
 17    1.5
 Name: floors, dtype: float64
 ```
-The exact meaning for these values wasn't stated by the publisher of the dataset, although it could be interpretted as an attic/basement floor which wouldn't be equivalent to an additional story to a house (therefore this value differentiates between them.) The data does also contain a basement area value, so we should comparre it to this:
-```python
-print(df['sqft_basement'][12:18])
-```
-### Output
-```
-12      0
-13      0
-14      0
-15    970
-16      0
-17      0
-Name: sqft_basement, dtype: int64
-```
-For all of the values shown before with a decimal value, we see there is no basement on the property. Now we should check if this means there is an attic on the property. To do this, note that a value of 1.5 means that if there is no attic or second floor then the value of 'sqft_above' (Living area above ground level in square feet) should be zero:
-```python
-print(df['sqft_above'][12:18])
-```
-### Output
-```
-12    1430
-13    1370
-14    1810
-15    1980
-16    1890
-17    1600
-Name: sqft_above, dtype: int64
-```
-However, the values are not zero and are in fact the same as the values for 'sqft_living'. This does raise another problem though, data value 13 has only 1 recorded floor but also has a value of sqft_above that isnt zero.
+The same is true for the number of bathrooms which has quarter values. This initially raised questions about meanings to these scores, but after some research it is clear that these values actually hold legitimate meaning:
+* A house with a 'half floor', also sometimes referred to as dormer bungalows, are one and a half storey homes that typically have large living spaces on the ground floor, with bedrooms located in the roof space.
+* A full bathroom contains all four plumbing fixtures: a toilet, sink, shower, and tub. A quarter bath contains one fixture, most commonly a toilet or shower. A half bath contains a toilet and sink. Lastly, a three-quarter bath contains three fixtures: a toilet, sink, and shower.
+
+
+
